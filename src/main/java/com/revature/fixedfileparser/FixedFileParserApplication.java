@@ -12,7 +12,6 @@ import org.springframework.context.ApplicationContext;
 		exclude = {DataSourceAutoConfiguration.class}
 )
 public class FixedFileParserApplication {
-
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(FixedFileParserApplication.class, args);
 	}

@@ -65,11 +65,8 @@ public class UserService {
         }
 
         // Create a new user
-        User user = new User();
-        user.setUsername(username);
+        User user = new User(username, password, role);
         //TODO Hash and encrypt password
-        user.setPassword(password);
-        user.setRole(role);
 
         // Save the user to the database
         return userRepository.save(user);
