@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class UserController {
     private UserService userService;
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;

@@ -33,6 +33,13 @@ public class FixedFileService {
         this.fixedFileRepository = fixedFileRepository;
     }
 
+    /**
+     * Retrieves all fixed files that were uploaded by a specific user
+     *
+     * @param userId the id pertaining to the user
+     * @return list of fixed files that were uploaded by the user
+     * @throws NotFoundException if not fixed file was associated with the user id
+     */
     public List<FixedFile> getFixedFileListByUser(ObjectId userId) throws NotFoundException {
         return fixedFileRepository.findAllByUserId(userId)
                 .orElseThrow(() -> new NotFoundException("No Fixed File was found associated with the User Id"));
@@ -65,8 +72,9 @@ public class FixedFileService {
 
     /**
      * This reads the entire fixed file at once with readAllBytes.
-     * @return
-     * @throws IOException
+     *
+     * @return String representing all the data from the file
+     * @throws IOException if the file does not exist
      */
     public String readAllBytesFromFile(FixedFile fixedFile) throws IOException {
         File file = new File(fixedFile.getFilePath());
@@ -74,12 +82,13 @@ public class FixedFileService {
     }
 
     /**
-     * This will take a flat file and a spec map in order to create a list of strings, each representing
-     * one field value from the flat file.
-     * @param data
-     * @param map
-     * @return
-     * @throws IOException
+     * This will take the parsed string fields from a flat file and a spec map
+     * in order to create a list of strings, each representing one field value from the flat file
+     *
+     * @param data the parsed string data
+     * @param map a map of tokens representing fields in the fixed file
+     * @return the parsed value strings of
+     * @throws IOException  if the file does not exist
      */
     public String[] readStringFields(String data, Map<String, Field> map) throws IOException {
         List<String> fieldList = new ArrayList<>();

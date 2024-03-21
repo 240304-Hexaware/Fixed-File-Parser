@@ -17,7 +17,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 public class SpecificationFileController {
-
     private SpecificationFileService specificationFileService;
 
     @Autowired

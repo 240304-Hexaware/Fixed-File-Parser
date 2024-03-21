@@ -35,6 +35,12 @@ public class SpecificationFileService {
         this.specificationFileRepository = specificationFileRepository;
     }
 
+    /**
+     * Finds a specification file by their id
+     * @param specFileId id associated with the specification file
+     * @return the specification file
+     * @throws NotFoundException if no specification associated with the id is found
+     */
     public SpecificationFile findSpecificationFile(ObjectId specFileId) throws NotFoundException {
         return specificationFileRepository.findById(specFileId)
                 .orElseThrow(() -> new NotFoundException("Query returned no result."));
